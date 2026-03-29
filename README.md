@@ -1,4 +1,4 @@
 ﻿# brainGames
 
 
-I am tired of payed brain mobile apps. Gonna make one myself but web version
+I am tired of payed brain games mobile apps. Gonna make one myself but web version
