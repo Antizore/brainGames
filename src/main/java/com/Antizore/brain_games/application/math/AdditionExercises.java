@@ -8,11 +8,11 @@ import java.security.SecureRandom;
 public class AdditionExercises {
 
     public static void main(String[] args) {
-        new AdditionExercises().randomizeVariable();
+        new AdditionExercises().generateNumbers();
     }
 
 
-    public AdditionRequest randomizeVariable(){
+    public AdditionRequest generateNumbers(){
 
         int lowerBond = 0;
         int upperBond = 100;
