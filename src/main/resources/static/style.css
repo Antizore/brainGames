@@ -1,0 +1,128 @@
+/* Reset i podstawy */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e9ecef;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Mobilny kontener */
+#app-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Wygląd na desktopie (symulacja telefonu) */
+@media (min-width: 421px) {
+    #app-container {
+        min-height: 85vh;
+        height: 85vh;
+        margin-top: 5vh;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+}
+
+/* Zarządzanie widokami (SPA) */
+.view {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.view.active {
+    display: flex;
+}
+
+/* Stylowanie Menu */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+header h1 {
+    color: #2b2d42;
+    font-size: 28px;
+}
+
+header p {
+    color: #8d99ae;
+}
+
+.game-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-btn {
+    background-color: #f8f9fa;
+    border: 2px solid #edf2f4;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2b2d42;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.game-btn .icon {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.game-btn:hover {
+    background-color: #edf2f4;
+    border-color: #8d99ae;
+}
+
+.game-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Stylowanie nagłówka gry */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #edf2f4;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #ef233c;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#game-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

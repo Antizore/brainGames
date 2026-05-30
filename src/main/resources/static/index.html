@@ -1,21 +1,38 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-    <title>Brainer</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Games</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<script language="javascript" type="text/javascript" src="js/script.js"></script>
+<div id="app-container">
+    <div id="view-menu" class="view active">
+        <header>
+            <h1>Brain Games</h1>
+            <p>Choose game</p>
+        </header>
+        <div class="game-grid">
+            <button class="game-btn" data-game="math-addition">
+                <span class="icon">➕</span> Math
+            </button>
+            <button class="game-btn disabled" data-game="memory">
+                <span class="icon">🧠</span> Memory (coming soon)
+            </button>
+        </div>
+    </div>
 
-<button onclick="loadData()">Generuj liczby</button>
+    <div id="view-game" class="view">
+        <header class="game-header">
+            <button class="back-btn" id="btn-back">🔙 Wróć</button>
+            <h2 id="game-title">Game Title</h2>
+            <div class="score-display">Points: <span id="score">0</span></div>
+        </header>
+        <div id="game-content"></div>
+    </div>
+</div>
 
-
-
-<div id="firstNumber"></div>
-<div id="secondNumber"></div>
-
-
-
-
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
