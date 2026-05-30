@@ -1,7 +1,4 @@
-package com.Antizore.brain_games.application.math;
-
-import com.Antizore.brain_games.application.dto.AdditionRequest;
-import com.Antizore.brain_games.application.dto.AdditionResponse;
+package com.antizore.braingames.math;
 
 import java.security.SecureRandom;
 

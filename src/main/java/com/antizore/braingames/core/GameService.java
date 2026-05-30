@@ -1,4 +1,4 @@
-package com.Antizore.brain_games.domain.service;
+package com.antizore.braingames.core;
 
 import org.springframework.stereotype.Service;
 

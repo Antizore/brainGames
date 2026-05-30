@@ -1,7 +1,7 @@
-package com.Antizore.brain_games.domain.strategy.impl;
+package com.antizore.braingames.math;
 
-import com.Antizore.brain_games.domain.model.GameType;
-import com.Antizore.brain_games.domain.strategy.GameStarter;
+import com.antizore.braingames.core.GameType;
+import com.antizore.braingames.core.GameStarter;
 import org.springframework.stereotype.Component;
 
 @Component

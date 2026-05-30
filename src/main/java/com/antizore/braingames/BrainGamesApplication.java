@@ -1,4 +1,4 @@
-package com.Antizore.brain_games;
+package com.antizore.braingames;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,5 @@
-package com.Antizore.brain_games.application.dto;
+package com.antizore.braingames.math;
 
-
-import java.util.Optional;
 
 public record AdditionResponse(
         int firstNumber,

@@ -1,9 +1,6 @@
-package com.Antizore.brain_games.infrastructure.controller;
+package com.antizore.braingames.math;
 
 
-import com.Antizore.brain_games.application.dto.AdditionRequest;
-import com.Antizore.brain_games.application.dto.AdditionResponse;
-import com.Antizore.brain_games.application.math.AdditionExercises;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.Antizore.brain_games.application.dto;
+package com.antizore.braingames.math;
 
 public record AdditionRequest(
         int firstNumber,

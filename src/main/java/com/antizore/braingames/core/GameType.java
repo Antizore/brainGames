@@ -1,4 +1,4 @@
-package com.Antizore.brain_games.domain.model;
+package com.antizore.braingames.core;
 
 public enum GameType {
     MATH,

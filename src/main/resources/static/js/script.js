@@ -6,7 +6,6 @@ async function loadData() {
         const data = await response.json();
         document.getElementById("firstNumber").innerText = data["firstNumber"];
         document.getElementById("secondNumber").innerText = data["secondNumber"];
-        console.log(data);
     } catch (error) {
         console.error("Error fetching data:", error);
     }
