@@ -4,11 +4,6 @@ import java.security.SecureRandom;
 
 public class AdditionExercises {
 
-    public static void main(String[] args) {
-        new AdditionExercises().generateNumbers();
-    }
-
-
     public AdditionRequest generateNumbers(){
 
         int lowerBond = 0;
