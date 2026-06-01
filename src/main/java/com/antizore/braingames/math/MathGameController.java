@@ -8,11 +8,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/math")
 public class MathGameController {
 
+
+
+
+    @GetMapping("/start")
+    public void startGame(){
+        MathGameStarter mathGameStarter = new MathGameStarter();
+        mathGameStarter.start();
+    }
+
     @GetMapping("/task")
     public ResponseEntity<AdditionRequest> requestTask(){
         return ResponseEntity
                 .ok()
-                .body(new AdditionExercises().generateNumbers());
+                .body(new AdditionRequest(new MathGameService().generateEquation()));
     }
 
     @PostMapping("/task")
