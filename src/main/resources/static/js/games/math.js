@@ -2,6 +2,7 @@ import { fetchMathTask, verifyMathTask } from '../api.js';
 
 let currentTask = null;
 let onScoreCallback = null;
+let currentTaskId = null;
 
 // Game init
 export function init(containerElement, scoreCallback) {
@@ -39,6 +40,7 @@ async function loadNewTask() {
     try {
         currentTask = await fetchMathTask();
         display.innerText = `${currentTask.equation} = ?`;
+        currentTaskId = currentTask.taskId
         input.disabled = false;
         input.focus();
     } catch (error) {
@@ -55,9 +57,8 @@ async function checkAnswer() {
     if (isNaN(userAnswer)) return;
 
     const payload = {
-        firstNumber: currentTask.firstNumber,
-        secondNumber: currentTask.secondNumber,
-        userInput: userAnswer
+        userInput: userAnswer,
+        taskId: currentTaskId
     };
 
     submitBtn.disabled = true;
