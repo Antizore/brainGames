@@ -38,7 +38,7 @@ async function loadNewTask() {
 
     try {
         currentTask = await fetchMathTask();
-        display.innerText = `${currentTask.firstNumber} + ${currentTask.secondNumber} = ?`;
+        display.innerText = `${currentTask.equation} = ?`;
         input.disabled = false;
         input.focus();
     } catch (error) {
