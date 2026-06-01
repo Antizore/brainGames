@@ -4,20 +4,6 @@ import java.security.SecureRandom;
 
 public class AdditionExercises {
 
-    public AdditionRequest generateNumbers(){
-
-        int lowerBond = 0;
-        int upperBond = 100;
-
-        SecureRandom secureRandom = new SecureRandom();
-        int firstNumber = secureRandom.nextInt(lowerBond, upperBond);
-        int secondNumber = secureRandom.nextInt(lowerBond, upperBond);
-
-        System.out.println(firstNumber);
-        System.out.println(secondNumber);
-
-        return new AdditionRequest(firstNumber, secondNumber);
-    }
 
     public boolean checkUserInput(AdditionResponse userResponse){
         return userResponse.firstNumber() + userResponse.secondNumber() == userResponse.userInput();
