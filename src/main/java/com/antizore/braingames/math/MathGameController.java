@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/math")
 public class MathGameController {
 
+    private final MathGameService mathGameService;
+
+    public MathGameController(MathGameService mathGameService){
+        this.mathGameService = mathGameService;
+    }
 
 
 
@@ -21,7 +26,7 @@ public class MathGameController {
     public ResponseEntity<AdditionRequest> requestTask(){
         return ResponseEntity
                 .ok()
-                .body(new AdditionRequest(new MathGameService().generateEquation()));
+                .body(mathGameService.generateEquation());
     }
 
     @PostMapping("/task")
