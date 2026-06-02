@@ -2,11 +2,8 @@ package com.antizore.braingames.math;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
-
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
 import java.time.Duration;
 
 @Service
@@ -28,13 +25,25 @@ public class MathGameService {
         redisTemplate.opsForValue().set(
                 "task: " + taskId,
                 String.valueOf(resultOfEquation),
-                Duration.ofSeconds(15)
+                Duration.ofSeconds(45)
         );
 
-        return new AdditionRequest(
+        return new MathGameDto.TaskResponse(
                 equation,
                 taskId
         );
+    }
+
+    public MathGameDto.EvaluationResponse checkAnswer(MathGameDto.CheckRequest userResponse){
+        String key = "task: " + userResponse.taskId();
+
+        if(redisTemplate.opsForValue().get(key).equals(String.valueOf(userResponse.userInput()))){
+            return new MathGameDto.EvaluationResponse(true);
+        }
+        else{
+            return new MathGameDto.EvaluationResponse(false);
+        }
+
     }
 
 
