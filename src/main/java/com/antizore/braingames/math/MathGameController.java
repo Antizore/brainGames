@@ -23,18 +23,18 @@ public class MathGameController {
     }
 
     @GetMapping("/task")
-    public ResponseEntity<AdditionRequest> requestTask(){
+    public ResponseEntity<MathGameDto.TaskResponse> requestTask(){
         return ResponseEntity
                 .ok()
                 .body(mathGameService.generateEquation());
     }
 
     @PostMapping("/task")
-    public ResponseEntity<Boolean> checkTask(@RequestBody AdditionResponse userResponse){
+    public ResponseEntity<MathGameDto.EvaluationResponse> checkTask(@RequestBody MathGameDto.CheckRequest userResponse){
         return ResponseEntity
                 .ok()
                 .body(
-                        new AdditionExercises().checkUserInput(userResponse)
+                        mathGameService.checkAnswer(userResponse)
                 );
     }
 

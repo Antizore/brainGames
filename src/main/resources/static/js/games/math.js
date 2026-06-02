@@ -66,7 +66,7 @@ async function checkAnswer() {
     try {
         const result = await verifyMathTask(payload);
 
-        if (result.correct) {
+        if (result.isCorrect) {
             onScoreCallback(result.points || 10);
             input.style.backgroundColor = "#d4edda";
             setTimeout(() => {

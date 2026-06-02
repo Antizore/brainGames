@@ -18,7 +18,7 @@ public class MathGameService {
         this.redisTemplate = redisTemplate;
     }
 
-    public  AdditionRequest generateEquation(){
+    public  MathGameDto.TaskResponse generateEquation(){
 
         String taskId = String.valueOf(java.util.UUID.randomUUID());
         StringBuilder equation = EquationGenerator.equation();
