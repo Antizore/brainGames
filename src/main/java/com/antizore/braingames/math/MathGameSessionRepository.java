@@ -1,4 +1,6 @@
 package com.antizore.braingames.math;
 
-public interface MathGameSessionRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface MathGameSessionRepository extends CrudRepository<MathGameSession, String> {
 }

@@ -1,4 +1,6 @@
 package com.antizore.braingames.core;
 
-public interface UserSessionRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserSessionRepository extends CrudRepository<UserSession, String> {
 }
