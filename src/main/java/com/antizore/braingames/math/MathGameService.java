@@ -38,10 +38,17 @@ public class MathGameService {
         String key = "task: " + userResponse.taskId();
 
         if(redisTemplate.opsForValue().get(key).equals(String.valueOf(userResponse.userInput()))){
-            return new MathGameDto.EvaluationResponse(true);
+            return new MathGameDto.EvaluationResponse(
+                    true,
+                    0,
+                    0
+            );
         }
         else{
-            return new MathGameDto.EvaluationResponse(false);
+            return new MathGameDto.EvaluationResponse(
+                    false,
+                    0,
+                    0);
         }
 
     }

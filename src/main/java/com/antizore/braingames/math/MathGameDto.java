@@ -24,11 +24,16 @@ public class MathGameDto {
     ){}
 
     /**
-     * DTO that sends evaluation response if user's answer is correct
+     * DTO for evaluation response if user's answer is correct and sends how much points is gained
+     * with new time left
      * @param isCorrect
+     * @param pointsGained
+     * @param newTotalTimeLeft
      */
     public record EvaluationResponse(
-            boolean isCorrect
+            boolean isCorrect,
+            int pointsGained,
+            int newTotalTimeLeft
     ){}
 
 }
