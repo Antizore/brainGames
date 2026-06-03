@@ -7,7 +7,7 @@ public class OperationRandomizer {
     private final char[] operators = {'+','-','/','*'};
 
     public char[] generateOperators(){
-        int numberOfOperators = 2;
+        int numberOfOperators = 1;
         char[] generatedOperators = new char[numberOfOperators];
 
         SecureRandom secureRandom = new SecureRandom();
