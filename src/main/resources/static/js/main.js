@@ -1,4 +1,9 @@
 import * as mathGame from './games/math.js';
+import {initSession} from './session.js';
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const sessionToken = await initSession();
+})
 
 
 let globalScore = 0;

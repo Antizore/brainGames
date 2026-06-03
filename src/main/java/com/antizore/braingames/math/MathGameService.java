@@ -1,5 +1,7 @@
 package com.antizore.braingames.math;
 
+import com.antizore.braingames.core.UserSession;
+import com.antizore.braingames.core.UserSessionRepository;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -10,10 +12,21 @@ import java.time.Duration;
 public class MathGameService {
 
     private final StringRedisTemplate redisTemplate;
+    private final MathGameSessionRepository gameRepository;
+    private final UserSessionRepository userRepository;
 
-    public MathGameService(StringRedisTemplate redisTemplate){
+    public MathGameService(StringRedisTemplate redisTemplate, MathGameSessionRepository gameRepository, UserSessionRepository userRepository) {
         this.redisTemplate = redisTemplate;
+        this.gameRepository = gameRepository;
+        this.userRepository = userRepository;
     }
+
+    public void startNewGame(String sessionId) {
+        UserSession user = userRepository.findById(sessionId).orElseThrow(() -> new RuntimeException("There is no user session"));
+        user.setStatus("IN_GAME");
+        userRepository.save(user);
+    }
+
 
     public  MathGameDto.TaskResponse generateEquation(){
 

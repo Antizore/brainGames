@@ -1,13 +1,14 @@
 package com.antizore.braingames.math;
 
-import org.hibernate.validator.constraints.UUID;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
 
 @RedisHash("math_game_session")
 public class MathGameSession {
 
-    @UUID
+    @Id
     private String sessionId;
 
     private int score;
@@ -18,7 +19,7 @@ public class MathGameSession {
     private int currentCorrectAnswer;
 
     @TimeToLive
-    private Long ttlInSeconds = 900L;
+    private Long ttlInSeconds = 10L;
 
     public MathGameSession(){}
 
