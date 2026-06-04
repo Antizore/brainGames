@@ -1,28 +1,24 @@
-import {fetchMathTask, startGameSession, verifyMathTask} from '../api.js';
+import { fetchMathTask, startMathGame, verifyMathTask } from './mathApi.js';
 
-let currentTask = null;
-let onScoreCallback = null;
 let currentTaskId = null;
+let onScoreCallback = null;
 
-// Game init
-export function init(containerElement, scoreCallback, sessionData) {
+export async function init(containerElement, scoreCallback, sessionData) {
     onScoreCallback = scoreCallback;
 
     try {
-        const payload = {
+        await startMathGame({
             sessionId: sessionData.sessionId,
             username: sessionData.username
-        };
-        startGameSession(payload)
+        });
     } catch (error) {
-        console.error(error);
+        console.error("Błąd startu gry:", error);
     }
 
-
     containerElement.innerHTML = `
-        <h1 id="equation-display" style="font-size: 48px; margin-bottom: 30px;">Ładowanie...</h1>
-        <input type="number" id="math-answer" style="font-size: 24px; padding: 10px; width: 100%; text-align: center; border-radius: 8px; border: 2px solid #ccc; margin-bottom: 20px;" placeholder="Wpisz wynik">
-        <button id="submit-btn" style="width: 100%; padding: 15px; font-size: 18px; background: #2b2d42; color: white; border: none; border-radius: 8px; cursor: pointer;">Sprawdź</button>
+        <h1 id="equation-display" style="font-size: 48px; margin-bottom: 30px;">Loading equation...</h1>
+        <input type="number" id="math-answer" style="font-size: 24px; padding: 10px; width: 100%; text-align: center; border-radius: 8px; border: 2px solid #ccc; margin-bottom: 20px;" placeholder="Your input">
+        <button id="submit-btn" style="width: 100%; padding: 15px; font-size: 18px; background: #2b2d42; color: white; border: none; border-radius: 8px; cursor: pointer;">Check</button>
     `;
 
     document.getElementById('submit-btn').addEventListener('click', checkAnswer);
@@ -33,31 +29,28 @@ export function init(containerElement, scoreCallback, sessionData) {
     loadNewTask();
 }
 
-
 export function cleanup(containerElement) {
     containerElement.innerHTML = '';
-    currentTask = null;
     onScoreCallback = null;
+    currentTaskId = null;
 }
-
 
 async function loadNewTask() {
     const display = document.getElementById('equation-display');
     const input = document.getElementById('math-answer');
 
-    display.innerText = "⏳ Ładowanie...";
+    display.innerText = "Loading equation...";
     input.value = "";
     input.disabled = true;
 
     try {
-        currentTask = await fetchMathTask();
-        display.innerText = `${currentTask.equation} = ?`;
-        currentTaskId = currentTask.taskId
+        const task = await fetchMathTask();
+        display.innerText = `${task.equation} = ?`;
+        currentTaskId = task.taskId;
         input.disabled = false;
         input.focus();
     } catch (error) {
-        console.error(error);
-        display.innerText = "Błąd serwera ❌";
+        display.innerText = "Server error";
     }
 }
 
@@ -68,18 +61,16 @@ async function checkAnswer() {
 
     if (isNaN(userAnswer)) return;
 
-    const payload = {
-        userInput: userAnswer,
-        taskId: currentTaskId
-    };
-
     submitBtn.disabled = true;
 
     try {
-        const result = await verifyMathTask(payload);
+        const result = await verifyMathTask({
+            userInput: userAnswer,
+            taskId: currentTaskId
+        });
 
         if (result.isCorrect) {
-            onScoreCallback(result.points || 10);
+            onScoreCallback(result.pointsGained || 10);
             input.style.backgroundColor = "#d4edda";
             setTimeout(() => {
                 input.style.backgroundColor = "";
@@ -94,8 +85,7 @@ async function checkAnswer() {
             }, 500);
         }
     } catch (error) {
-        console.error(error);
-        alert("Error during connecting to the server.");
+        alert("Error connecting to the server.");
     } finally {
         submitBtn.disabled = false;
     }
