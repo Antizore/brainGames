@@ -17,7 +17,7 @@ public class MathGameController {
 
 
 
-    @GetMapping("/start")
+    @PostMapping("/start")
     public void startGame(@RequestBody UserDTOs.userSession userSession){
         mathGameService.startNewGame(userSession);
     }

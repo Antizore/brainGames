@@ -38,3 +38,10 @@ export async function initSession() {
 function getToken() {
     return localStorage.getItem(SESSION_KEY);
 }
+
+export function getSessionData() {
+    return {
+        sessionId: localStorage.getItem(SESSION_KEY),
+        username: localStorage.getItem(USERNAME_KEY)
+    };
+}

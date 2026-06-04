@@ -5,13 +5,13 @@ let onScoreCallback = null;
 let currentTaskId = null;
 
 // Game init
-export function init(containerElement, scoreCallback) {
+export function init(containerElement, scoreCallback, sessionData) {
     onScoreCallback = scoreCallback;
 
     try {
         const payload = {
-            sessionId: SESSION_KEY,
-            username: USERNAME_KEY
+            sessionId: sessionData.sessionId,
+            username: sessionData.username
         };
         startGameSession(payload)
     } catch (error) {

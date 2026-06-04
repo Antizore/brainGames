@@ -1,5 +1,5 @@
 import * as mathGame from './games/math.js';
-import {initSession} from './session.js';
+import { initSession, getSessionData } from './session.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const sessionToken = await initSession();
@@ -36,11 +36,12 @@ function openGame(gameId) {
     views.game.classList.add('active');
     globalScore = 0;
     updateScoreDisplay();
+    const sessionData = getSessionData();
 
     if (gameId === 'math-addition') {
         gameTitle.innerText = "Dodawanie";
         currentGame = mathGame;
-        currentGame.init(gameContent, addPoints);
+        currentGame.init(gameContent, addPoints, sessionData);
     }
 }
 
