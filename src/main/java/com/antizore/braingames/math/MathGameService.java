@@ -1,5 +1,6 @@
 package com.antizore.braingames.math;
 
+import com.antizore.braingames.core.UserDTOs;
 import com.antizore.braingames.core.UserSession;
 import com.antizore.braingames.core.UserSessionRepository;
 import net.objecthunter.exp4j.Expression;
@@ -21,10 +22,11 @@ public class MathGameService {
         this.userRepository = userRepository;
     }
 
-    public void startNewGame(String sessionId) {
-        UserSession user = userRepository.findById(sessionId).orElseThrow(() -> new RuntimeException("There is no user session"));
+    public void startNewGame(UserDTOs.userSession userSession) {
+        UserSession user = userRepository.findById(userSession.sessionId()).orElseThrow(() -> new RuntimeException("There is no user session"));
         user.setStatus("IN_GAME");
         userRepository.save(user);
+        System.out.println("Pomyślnie zaczęto grę użytkownika" + user.getUsername() + " " + user.getStatus());
     }
 
 

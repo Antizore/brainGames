@@ -47,12 +47,7 @@ public class UserSession {
         this.status = status;
     }
 
-    Record userSessionDTO(
-            String sessionId,
-            String username
-    ){
-        return null;
-    }
+
 
 
 }

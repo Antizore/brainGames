@@ -15,3 +15,14 @@ export async function verifyMathTask(payload) {
     if (!response.ok) throw new Error('Verification error');
     return response.json();
 }
+
+
+export async function startGameSession(payload) {
+    const response = await fetch(`${BASE_URL}/math/start`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error('Starting session error');
+    return response.json();
+}

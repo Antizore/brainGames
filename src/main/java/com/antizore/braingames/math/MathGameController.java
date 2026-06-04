@@ -1,6 +1,7 @@
 package com.antizore.braingames.math;
 
 
+import com.antizore.braingames.core.UserDTOs;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,8 @@ public class MathGameController {
 
 
     @GetMapping("/start")
-    public void startGame(){
-        MathGameStarter mathGameStarter = new MathGameStarter();
-        mathGameStarter.start();
+    public void startGame(@RequestBody UserDTOs.userSession userSession){
+        mathGameService.startNewGame(userSession);
     }
 
     @GetMapping("/task")

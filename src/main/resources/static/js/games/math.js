@@ -1,4 +1,4 @@
-import { fetchMathTask, verifyMathTask } from '../api.js';
+import {fetchMathTask, startGameSession, verifyMathTask} from '../api.js';
 
 let currentTask = null;
 let onScoreCallback = null;
@@ -7,6 +7,17 @@ let currentTaskId = null;
 // Game init
 export function init(containerElement, scoreCallback) {
     onScoreCallback = scoreCallback;
+
+    try {
+        const payload = {
+            sessionId: SESSION_KEY,
+            username: USERNAME_KEY
+        };
+        startGameSession(payload)
+    } catch (error) {
+        console.error(error);
+    }
+
 
     containerElement.innerHTML = `
         <h1 id="equation-display" style="font-size: 48px; margin-bottom: 30px;">Ładowanie...</h1>
@@ -28,6 +39,7 @@ export function cleanup(containerElement) {
     currentTask = null;
     onScoreCallback = null;
 }
+
 
 async function loadNewTask() {
     const display = document.getElementById('equation-display');
