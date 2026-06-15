@@ -26,7 +26,6 @@ public class MathGameService {
         UserSession user = userRepository.findById(userSession.sessionId()).orElseThrow(() -> new RuntimeException("There is no user session"));
         user.setStatus("IN_GAME");
         userRepository.save(user);
-        System.out.println("Pomyślnie zaczęto grę użytkownika" + user.getUsername() + " " + user.getStatus());
     }
 
 
