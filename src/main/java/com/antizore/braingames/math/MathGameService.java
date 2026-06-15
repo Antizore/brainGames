@@ -8,6 +8,8 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class MathGameService {
@@ -26,6 +28,18 @@ public class MathGameService {
         UserSession user = userRepository.findById(userSession.sessionId()).orElseThrow(() -> new RuntimeException("There is no user session"));
         user.setStatus("IN_GAME");
         userRepository.save(user);
+
+        final int STARTING_SCORE = 0;
+        final int STARTING_DIFFICULTY = 1;
+        final long EXPIRES_AT = Instant.now().plus(1, ChronoUnit.MINUTES).toEpochMilli();
+
+        MathGameSession mathGameSession = new MathGameSession(
+                java.util.UUID.randomUUID().toString(),
+                STARTING_SCORE,
+                STARTING_DIFFICULTY,
+                EXPIRES_AT
+        );
+
     }
 
 
@@ -51,7 +65,12 @@ public class MathGameService {
     public MathGameDto.EvaluationResponse checkAnswer(MathGameDto.CheckRequest userResponse){
         String key = "task: " + userResponse.taskId();
 
-        if(redisTemplate.opsForValue().get(key).equals(String.valueOf(userResponse.userInput()))){
+        boolean task = redisTemplate.opsForValue().get(key).equals(String.valueOf(userResponse.userInput()));
+
+
+
+
+        if(task){
             return new MathGameDto.EvaluationResponse(
                     true,
                     0,
